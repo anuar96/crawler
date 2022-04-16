@@ -1,0 +1,17 @@
+POST http://localhost:9000//crawler/getTitles
+Content-Type: application/json
+
+{
+  "urls": [
+    "https://www.google.com/",
+    "https://stackoverflow.com/",
+    "http://localhost:9001/"]
+}
+
+###
+POST http://localhost:9000//crawler/getTitles
+Content-Type: application/json
+
+{
+  "uasd" : "asd"
+}

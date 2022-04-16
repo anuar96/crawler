@@ -7,10 +7,6 @@ import twoGis.crawler.services.Crawler
 
 import javax.inject._
 
-/**
- * This controller creates an `Action` to handle HTTP requests to the
- * application's home page.
- */
 @Singleton
 class CrawlerController @Inject()(
                                    cc: ControllerComponents,
@@ -29,7 +25,5 @@ class CrawlerController @Inject()(
         Ok(Json.toJson(titles))
       }
     )
-
   }
-
 }
