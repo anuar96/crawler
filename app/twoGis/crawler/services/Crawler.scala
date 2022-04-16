@@ -12,8 +12,7 @@ class Crawler @Inject()(){
 
   def getTitles(urlList: UrlList): Map[String, String] ={
     urlList.urls.map{ url =>
-      val title = browser.get(url).title
-      url -> title
+      url -> browser.get(url).title
     }.toMap
   }
 }
