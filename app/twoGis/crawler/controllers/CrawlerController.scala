@@ -5,7 +5,9 @@ import play.api.mvc._
 import twoGis.crawler.models.UrlList
 import twoGis.crawler.services.Crawler
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import javax.inject._
+import scala.concurrent.Future
 
 @Singleton
 class CrawlerController @Inject()(
@@ -13,16 +15,16 @@ class CrawlerController @Inject()(
                                    crawler: Crawler
                                  ) extends AbstractController(cc) {
 
-  def getTitleFromUrls = Action(parse.json) { request =>
+  def getTitleFromUrls = Action.async(parse.json) { request =>
     val urls = request.body.validate[UrlList]
 
     urls.fold(
       errors => {
-        BadRequest(Json.obj("message" -> JsError.toJson(errors)))
+        Future.successful(BadRequest(Json.obj("message" -> JsError.toJson(errors))))
       },
       urls => {
         val titles = crawler.getTitles(urls)
-        Ok(Json.toJson(titles))
+        titles.map(x => Json.toJson(x)).map(Ok(_))
       }
     )
   }
