@@ -28,3 +28,15 @@ Content-Type: application/json
 {
   "uasd" : "asd"
 }
+
+###
+
+POST http://localhost:9000//crawler/getTitles
+Content-Type: application/json
+
+{
+  "urls": [
+    "https://www.google.com/",
+    "https://stackoverflow.com/",
+    "htstp://localhost:9001/"]
+}
