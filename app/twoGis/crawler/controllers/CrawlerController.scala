@@ -2,7 +2,7 @@ package twoGis.crawler.controllers
 
 import play.api.libs.json._
 import play.api.mvc._
-import twoGis.crawler.models.UrlList
+import twoGis.crawler.models._
 import twoGis.crawler.services.Crawler
 
 import javax.inject._
