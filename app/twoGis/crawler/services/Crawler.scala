@@ -1,17 +1,16 @@
 package twoGis.crawler.services
 
 import net.ruippeixotog.scalascraper.browser.{Browser, JsoupBrowser}
-import play.api.libs.ws.{StandaloneWSClient, WSClient}
+import play.api.libs.ws.WSClient
 import twoGis.crawler.models.UrlList
 
 import javax.inject.{Inject, Singleton}
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class Crawler @Inject()(
                          val ws: WSClient
-                       ){
+                       )(implicit ec: ExecutionContext){
   val browser: Browser = JsoupBrowser()
 
   def getTitles(urlList: UrlList): Future[Map[String, String]] ={

@@ -5,15 +5,14 @@ import play.api.mvc._
 import twoGis.crawler.models.UrlList
 import twoGis.crawler.services.Crawler
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import javax.inject._
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class CrawlerController @Inject()(
                                    cc: ControllerComponents,
                                    crawler: Crawler
-                                 ) extends AbstractController(cc) {
+                                 )(implicit ec: ExecutionContext) extends AbstractController(cc) {
 
   def getTitleFromUrls = Action.async(parse.json) { request =>
     val urls = request.body.validate[UrlList]
